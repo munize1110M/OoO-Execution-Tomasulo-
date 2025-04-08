@@ -26,8 +26,15 @@ top DUT(clk, reset, instruction);
 
   always @(posedge clk) begin
     if (~reset) begin
-      instruction = testvectors[vectornum];
-      $display("INSTRUCTION: %h", instruction);
+      if (testvectors[vectornum] !== 32'hx) begin
+        instruction = testvectors[vectornum];
+        $display("INSTRUCTION: %h", instruction);
+
+      end
+      else begin
+        instruction = 32'hx;
+      end
+
     end
   end
 
