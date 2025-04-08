@@ -42,8 +42,10 @@ logic broadcast_add;
 logic [3:0]broadcast_tag_add;
 
 
-logic [3:0]cdb_tag;
-logic [31:0]cdb_data;
+logic [3:0]add_cdb_tag;
+logic [31:0]add_cdb_data;
+logic [3:0]mul_cdb_tag;
+logic [31:0]mul_cdb_data;
 
 logic[31:0]mul_result;
 logic broadcast_mul;
@@ -69,8 +71,10 @@ RAT rat(clk, reset,
         rs2_mul_tag_out,
         rs2_mul_val_out,
         dec_inac,
-        cdb_tag,// input broadcast_tag,
-        cdb_data);// input broadcast_val);
+        add_cdb_tag,// input broadcast_tag,
+        add_cdb_data, //input broadcast_val
+        mul_cdb_tag,
+        mul_cdb_data);
 
 reservation_station rs (clk,
                         reset,
@@ -84,10 +88,12 @@ reservation_station rs (clk,
                         rs2_to_add, //rs2 val
                         row, //row
                         add_calculate, //calc
-                        cdb_tag, //broad_tag
-                        cdb_data, //broad value
+                        add_cdb_tag, //broad_tag
+                        add_cdb_data, //broad value
                         broadcast_tag_add, //adder tag
-                        1'b0); //mul res
+                        1'b0, //mul res
+                        mul_cdb_tag,
+                        mul_cdb_data); 
 
 reservation_station mult_rs(clk,
                         reset,
@@ -101,10 +107,12 @@ reservation_station mult_rs(clk,
                         rs2_to_mul,// output logic [31:0]rs2_val,
                         mul_row,// output logic [1:0]row,
                         mul_calculate,// output logic calculate,
-                        cdb_tag,// input logic [3:0]broadcast_tag,
-                        cdb_data,// input logic [31:0]broadcast_value,
+                        add_cdb_tag,// input logic [3:0]broadcast_tag,
+                        add_cdb_data,// input logic [31:0]broadcast_value,
                         broadcast_tag_mul,// input logic [3:0]adderTAG);
-                        1'b1); //is this a MUL_res
+                        1'b1, //is this a MUL_res
+                        mul_cdb_tag,
+                        mul_cdb_data);
 
 decoder dec (instr,
     mem, mul,
@@ -129,7 +137,7 @@ multiplier mult(clk, reset,
                 broadcast_mul);// output logic broadcast); ::://to bus
 
 
-bus b(clk, reset,
+/*bus b(clk, reset,
         broadcast_tag_add,// input logic [3:0] aFUTag, 
         adder_result,// input logic [31:0] aFUData,
         broadcast_add,// input logic aFUReady,  //this is the broadcast signal from the adder
@@ -137,7 +145,20 @@ bus b(clk, reset,
         mul_result,// input mFUData,
         broadcast_mul,// input mFUReady,
         cdb_tag,// output logic [3:0] broad_tag,
-        cdb_data);// output logic [31:0] broad_data)
+        cdb_data);// output logic [31:0] broad_data)*/
+cbdBuffer CDB (
+        clk, reset,// input clk, reset,
+        broadcast_tag_add,// input logic [3:0] aFUTag,
+        adder_result,// input logic [31:0] aFUData,
+        broadcast_add,// input logic aFUReady,
+        broadcast_tag_mul,// input logic [3:0] mFUTag,
+        mul_result,// input logic [31:0] mFUData,
+        broadcast_mul,// input logic mFUReady,
+        add_cdb_tag,
+        add_cdb_data,// output logic [31:0] AddBroadData,
+        mul_cdb_tag,// output logic [3:0] MulBroadTag,
+        mul_cdb_data// output logic [31:0] MulBroadData
+);
 
 
 endmodule
