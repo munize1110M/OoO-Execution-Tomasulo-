@@ -229,7 +229,9 @@ module RAT (
         output logic [31:0]rs2_mul_val_out,
         input decinac,
         input logic [3:0]broadcast_tag,
-        input logic [31:0]broadcast_value
+        input logic [31:0]broadcast_value,
+        input logic [3:0]mul_broadcast_tag,
+        input logic [31:0]mul_broadcast_value
 );
 
     typedef struct packed {
@@ -306,6 +308,11 @@ module RAT (
                 if (rat[i].TAG == broadcast_tag && rat[i].VALID == 0) begin
                     rat[i].VALID = 1;
                     rat[i].VALUE = broadcast_value;
+                    rat[i].TAG = 4'bx;
+                end
+                else if (rat[i].TAG == mul_broadcast_tag && rat[i].VALID ==0) begin
+                    rat[i].VALID = 1;
+                    rat[i].VALUE = mul_broadcast_value;
                     rat[i].TAG = 4'bx;
                 end
             end
