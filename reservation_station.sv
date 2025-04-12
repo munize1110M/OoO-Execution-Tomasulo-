@@ -269,7 +269,7 @@ always@(posedge clk) begin
                     res1[0].TAG1 <= (broadcast_tag === res1[0].TAG1) ? broadcast_tag : res1[0].TAG1;//set tag to x
                     res1[0].TAG2 <= (broadcast_tag === res1[0].TAG2) ? broadcast_tag : res1[0].TAG2;//set tag to x
                 end
-                else if ((mul_broadcast_tag === res1[0].TAG1 || mul_broadcast_tag === res1[0].TAG2) && mul_broadcast_tag !== 4'bX) begin
+                if ((mul_broadcast_tag === res1[0].TAG1 || mul_broadcast_tag === res1[0].TAG2) && mul_broadcast_tag !== 4'bX) begin
                     res1[0].BUSY <= 1;
                     res1[0].VALID_1 <= 1;
                     res1[0].SRC_OP1 <= (mul_broadcast_tag === res1[0].TAG1) ? mul_broadcast_value : res1[0].SRC_OP1;
@@ -278,7 +278,7 @@ always@(posedge clk) begin
                     res1[0].TAG1 <= (mul_broadcast_tag === res1[0].TAG1) ? mul_broadcast_tag : res1[0].TAG1;//set tag to x
                     res1[0].TAG2 <= (mul_broadcast_tag === res1[0].TAG2) ? mul_broadcast_tag : res1[0].TAG2;//set tag to x
                 end
-                else if ((broadcast_tag === res1[1].TAG1 || broadcast_tag === res1[1].TAG2) && broadcast_tag !== 4'bX) begin
+                if ((broadcast_tag === res1[1].TAG1 || broadcast_tag === res1[1].TAG2) && broadcast_tag !== 4'bX) begin
                     res1[1].BUSY <= 1;
                     res1[1].VALID_1 <= 1;
                     res1[1].SRC_OP1 <= (broadcast_tag === res1[1].TAG1) ? broadcast_value : res1[1].SRC_OP1;
@@ -287,7 +287,7 @@ always@(posedge clk) begin
                     res1[1].TAG1 <= (broadcast_tag === res1[1].TAG1) ? broadcast_tag : res1[1].TAG1;//set tag to x
                     res1[1].TAG2 <= (broadcast_tag === res1[1].TAG2) ? broadcast_tag : res1[1].TAG2;//set tag to x
                 end
-                else if ((mul_broadcast_tag === res1[1].TAG1 || mul_broadcast_tag === res1[1].TAG2) && mul_broadcast_tag !== 4'bX) begin
+                if ((mul_broadcast_tag === res1[1].TAG1 || mul_broadcast_tag === res1[1].TAG2) && mul_broadcast_tag !== 4'bX) begin
                     res1[1].BUSY <= 1;
                     res1[1].VALID_1 <= 1;
                     res1[1].SRC_OP1 <= (mul_broadcast_tag === res1[1].TAG1) ? mul_broadcast_value : res1[1].SRC_OP1;
@@ -296,7 +296,7 @@ always@(posedge clk) begin
                     res1[1].TAG1 <= (mul_broadcast_tag === res1[1].TAG1) ? mul_broadcast_tag : res1[1].TAG1;//set tag to x
                     res1[1].TAG2 <= (mul_broadcast_tag === res1[1].TAG2) ? mul_broadcast_tag : res1[1].TAG2;//set tag to x
                 end
-                else if ((broadcast_tag === res1[2].TAG1 || broadcast_tag === res1[2].TAG2) && broadcast_tag !== 4'bX) begin
+                if ((broadcast_tag === res1[2].TAG1 || broadcast_tag === res1[2].TAG2) && broadcast_tag !== 4'bX) begin
 
                     res1[2].BUSY <= 1;
                     res1[2].VALID_1 <= 1;
@@ -306,7 +306,7 @@ always@(posedge clk) begin
                     res1[2].TAG1 <= (broadcast_tag === res1[2].TAG1) ? broadcast_tag : res1[2].TAG1;//set tag to x
                     res1[2].TAG2 <= (broadcast_tag === res1[2].TAG2) ? broadcast_tag : res1[2].TAG2;//set tag to x
                 end
-                else if ((mul_broadcast_tag === res1[2].TAG1 || mul_broadcast_tag === res1[2].TAG2) && mul_broadcast_tag !== 4'bX) begin
+                if ((mul_broadcast_tag === res1[2].TAG1 || mul_broadcast_tag === res1[2].TAG2) && mul_broadcast_tag !== 4'bX) begin
                     res1[2].BUSY <= 1;
                     res1[2].VALID_1 <= 1;
                     res1[2].SRC_OP1 <= (mul_broadcast_tag === res1[2].TAG1) ? mul_broadcast_value : res1[2].SRC_OP1;
@@ -315,7 +315,7 @@ always@(posedge clk) begin
                     res1[2].TAG1 <= (mul_broadcast_tag === res1[2].TAG1) ? mul_broadcast_tag : res1[2].TAG1;//set tag to x
                     res1[2].TAG2 <= (mul_broadcast_tag === res1[2].TAG2) ? mul_broadcast_tag : res1[2].TAG2;//set tag to x
                 end
-                else if((broadcast_tag === res1[3].TAG1 || broadcast_tag === res1[3].TAG2) && broadcast_tag !== 4'bX) begin
+                if((broadcast_tag === res1[3].TAG1 || broadcast_tag === res1[3].TAG2) && broadcast_tag !== 4'bX) begin
                     res1[3].BUSY <= 1;
                     res1[3].VALID_1 <= 1;
                     res1[3].SRC_OP1 <= (broadcast_tag === res1[3].TAG1) ? broadcast_value : res1[3].SRC_OP1;
@@ -324,7 +324,7 @@ always@(posedge clk) begin
                     res1[3].TAG1 <= (broadcast_tag === res1[3].TAG1) ? broadcast_tag : res1[3].TAG1; //set tag to X
                     res1[3].TAG2 <= (broadcast_tag === res1[3].TAG2) ? broadcast_tag : res1[3].TAG2; //set tag to X
                 end
-                else if ((mul_broadcast_tag === res1[3].TAG1 || mul_broadcast_tag === res1[3].TAG2) && mul_broadcast_tag !== 4'bX) begin
+                if ((mul_broadcast_tag === res1[3].TAG1 || mul_broadcast_tag === res1[3].TAG2) && mul_broadcast_tag !== 4'bX) begin
                     res1[3].BUSY <= 1;
                     res1[3].VALID_1 <= 1;
                     res1[3].SRC_OP1 <= (mul_broadcast_tag === res1[3].TAG1) ? mul_broadcast_value : res1[3].SRC_OP1;
