@@ -40,6 +40,9 @@ module decoder(input logic [31:0]instruction,
             default: begin
                 mem <= 0;
                 inactive <= 1;
+                rd <= 'x;
+                rs1 <= 'x;
+                rs2 <= 'x;
             end
         endcase
     end
