@@ -50,6 +50,18 @@ always @(posedge clk) begin
             MulBroadTag <= multbuff.Tag;
             MulBroadData <= multbuff.Data;
         end
+        if (!aFUReady) begin
+            addbuff.Data <= aFUData;
+            addbuff.Tag <= aFUTag;
+            AddBroadTag <= addbuff.Tag;
+            AddBroadData <= addbuff.Data;
+        end
+        if (!mFUReady) begin
+            multbuff.Data <= mFUData;
+            multbuff.Tag <= mFUTag;
+            MulBroadTag <= multbuff.Tag;
+            MulBroadData <= multbuff.Data; 
+        end           
         else if (aFUReady && mFUReady) begin
             addbuff.Data <= aFUData;
             addbuff.Tag <= aFUTag;
