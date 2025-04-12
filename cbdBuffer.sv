@@ -38,13 +38,23 @@ always @(posedge clk) begin
         multbuff.Tag <= 'x;
     end
     else begin
-        if (aFUReady) begin
+        if (aFUReady & !mFUReady) begin
             addbuff.Data <= aFUData;
             addbuff.Tag <= aFUTag;
             AddBroadTag <= addbuff.Tag;
             AddBroadData <= addbuff.Data;
         end
-        if (mFUReady) begin
+        if (mFUReady & !aFUReady) begin
+            multbuff.Data <= mFUData;
+            multbuff.Tag <= mFUTag;
+            MulBroadTag <= multbuff.Tag;
+            MulBroadData <= multbuff.Data;
+        end
+        else if (aFUReady && mFUReady) begin
+            addbuff.Data <= aFUData;
+            addbuff.Tag <= aFUTag;
+            AddBroadTag <= addbuff.Tag;
+            AddBroadData <= addbuff.Data;
             multbuff.Data <= mFUData;
             multbuff.Tag <= mFUTag;
             MulBroadTag <= multbuff.Tag;
