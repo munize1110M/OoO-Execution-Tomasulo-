@@ -25,11 +25,11 @@ typedef struct packed {
     logic BUSY;
     logic[2:0]OPERATION;
     logic VALID_1;
-    logic [4:0]SRC_OP1; //srcOP1 value
+    logic [31:0]SRC_OP1; //srcOP1 value
     logic [3:0]TAG1;
 
     logic VALID_2;
-    logic [4:0]SRC_OP2; //srcOP2 value
+    logic [31:0]SRC_OP2; //srcOP2 value
     logic [3:0]TAG2;
     logic FU;
     //logic [3:0]ID;
